@@ -13,7 +13,7 @@ namespace SalesWebMvc.Models
         public DateTime BirthDate { get; set; }
         public double BaseSalary { get; set; }
         public Department Department { get; set; }
-        public ICollection<SaleRecords> Sales { get; set; } = new List<SaleRecords>();
+        public ICollection<SalesRecord> Sales { get; set; } = new List<SalesRecord>();
 
         public Seller()
         {
@@ -30,12 +30,12 @@ namespace SalesWebMvc.Models
             Department = department;
         }
 
-        public void AddSales(SaleRecords sr)
+        public void AddSales(SalesRecord sr)
         {
             Sales.Add(sr);
         }
 
-        public void RemoveSales(SaleRecords sr)
+        public void RemoveSales(SalesRecord sr)
         {
             Sales.Remove(sr);
         }
