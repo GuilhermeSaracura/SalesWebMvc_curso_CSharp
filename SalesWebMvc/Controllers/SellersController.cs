@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SalesWebMvc.Services;
+using SalesWebMvc.Models.ViewModels;
 using SalesWebMvc.Models;
 
 namespace SalesWebMvc.Controllers
@@ -11,15 +12,19 @@ namespace SalesWebMvc.Controllers
     public class SellersController : Controller
     {
         private readonly SellerServices _sellerServices;
+        private readonly DepartmentServices _departmentServices;
 
-        public SellersController(SellerServices sellerServices)
+        public SellersController(SellerServices sellerServices, DepartmentServices departmentServices)
         {
             _sellerServices = sellerServices;
+            _departmentServices = departmentServices;
         }
 
         public IActionResult Create()
         {
-            return View();
+            var departments = _departmentServices.FindAll();
+            var viewModel = new SellerFormViewModel { Departments = departments };
+            return View(viewModel);
         }
         public IActionResult Index()
         {
